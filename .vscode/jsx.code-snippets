@@ -1,0 +1,33 @@
+{
+  "React Functional Component": {
+    "prefix": ["rfc-hooks", "react"],
+    "body": [
+      "import React, {",
+      "  useState, useEffect, useReducer, useCallback,",
+      "} from 'react';",
+      "import styled from 'styled-components';",
+      "import { reducer } from 'src/utils';",
+      "",
+      "const ${MyComp} = props => {",
+      "  const {",
+      "    children,",
+      "    style,",
+      "    className,",
+      "  } = props;",
+      "",
+      "  useEffect(() => {",
+      "",
+      "  }, []);",
+      "",
+      "  return (",
+      "    <>",
+      "",
+      "    </>",
+      "  );",
+      "};",
+      "",
+      "export default ${MyComp};",
+      "",
+    ]
+  }
+}
