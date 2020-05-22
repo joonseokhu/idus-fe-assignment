@@ -6,11 +6,12 @@ const Thumbnail = props => {
     style,
     className,
     url,
+    meta,
     ratio = 1,
   } = props;
 
   return (
-    <Root style={style} className={className}>
+    <Root style={style} className={className} aria-label={meta}>
       <Outer ratio={ratio}>
         <Inner img={url} />
       </Outer>
@@ -22,7 +23,7 @@ export default Thumbnail;
 
 const Root = styled.div`
   
-`
+`;
 
 const Outer = styled.div`
   position: relative;
@@ -38,7 +39,7 @@ const Inner = styled.div`
   width: 100%;
   height: 100%;
   background-color: #f0f0f0;
-  background-image: ${({img}) => `url('${img}')`};
+  background-image: ${({ img }) => `url('${img}')`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
