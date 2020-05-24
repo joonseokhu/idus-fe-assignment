@@ -42,35 +42,40 @@ const TextArea = props => {
   }, []);
 
   return (
-    <Root
-      style={style}
-      className={className}
-      role="textbox"
-      aria-label={placeholder}
-    >
-      <InputWrap hasButton={hasChanged}>
-        <Input
-          onChange={handleChange}
-          value={value}
-          placeholder={placeholder}
-          readOnly={readonly}
-          disabled={disabled}
-        />
-        {max && <Length warn={value.length > max}>{`${max - value.length}`}</Length>}
-      </InputWrap>
-      {hasChanged && <Button type="button" onClick={handleSubmit}>Save</Button>}
-    </Root>
+    <Wrapper>
+      <Container
+        style={style}
+        className={className}
+        role="textbox"
+        aria-label={placeholder}
+      >
+        <InputWrap hasButton={hasChanged}>
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder={placeholder}
+            readOnly={readonly}
+            disabled={disabled}
+          />
+          {max && <Length warn={value.length > max}>{`${max - value.length}`}</Length>}
+        </InputWrap>
+        {hasChanged && <Button type="button" onClick={handleSubmit}>Save</Button>}
+      </Container>
+    </Wrapper>
   );
 };
 
 export default TextArea;
 
-const Root = styled.div`
+const Wrapper = styled.div`
+  margin: 10px;
+`;
+
+const Container = styled.div`
   height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 10px;
 `;
 
 const InputWrap = styled.div`
