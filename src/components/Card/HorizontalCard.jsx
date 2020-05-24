@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Thumbnail from './Thumbnail';
@@ -15,30 +15,35 @@ const Card = props => {
     message,
     style,
     className,
-    width,
-    height,
+    width = '100%',
+    height = '160px',
   } = props;
 
+  const getLines = h => {
+    const value = Number(h.replace('px', ''));
+    if (Number.isNaN(value)) return 1;
+    const result = Math.floor((value - 100) / 20);
+    return result;
+  };
+
   return (
-    <Root style={style} className={className} _width={width}>
-      {img && <Thumbnail url={img} ratio={1} meta={`이미지: ${title}`} />}
-      <ContentSection>
-        <Label>{label}</Label>
+    <Root style={style} className={className} _width={width} _height={height}>
+      {img && <Thumbnail url={img} ratio={1} meta={`이미지: ${title}`} width={height} />}
+      <ContentSection _width={height}>
         <Title>{title || 'Card Title'}</Title>
-        <ContentFooter>
-          ddd
-        </ContentFooter>
-      </ContentSection>
-      {(rate !== undefined) && (
-      <RateSection>
-        <Rate rate={rate} />
-        {message && (
-        <RateMessage>
-          <p>{message}</p>
-        </RateMessage>
+        <Label _height={height} lines={getLines(height)}>{label}</Label>
+        {rate && (
+          <RateSection>
+            <Rate rate={rate} />
+            {message && (
+              <>
+                <Divider />
+                <RateName>{message}</RateName>
+              </>
+            )}
+          </RateSection>
         )}
-      </RateSection>
-      )}
+      </ContentSection>
     </Root>
   );
 };
@@ -46,69 +51,75 @@ const Card = props => {
 export default Card;
 
 const Root = styled.section`
+  width: ${({ _width }) => _width};
+  height: ${({ _height }) => _height};
+  display: flex;
+  position: relative;
   border-radius: 6px;
   overflow: hidden;
   background-color: rgb(248, 249, 251);
   border: 1px solid rgb(217, 216, 216);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
   margin: 10px;
-  width: ${({ _width }) => _width};
+  & > * {
+    float: left;
+  }
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 `;
 
 const ContentSection = styled.div`
-  padding: 6px 8px;
+  width: ${({ _width }) => `calc(100% - ${_width})`};
+  height: 100%;
+  overflow: hidden;
+  padding: 16px 16px;
   position: relative;
-  /* min-height: ${({ _height }) => _height}; */
-  /* &:not(:first-child) {
-    border-top: 1px solid rgb(217, 216, 216);
-  } */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   > *:not(:first-child) {
-    margin-top: 6px;
-  }
-  * {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 0;
   }
 `;
 
 const RateSection = styled.div`
-  border-top: 1px solid rgb(217, 216, 216);
-  padding: 6px 8px;
   display: flex;
-  height: 50px;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 `;
 
-const RateMessage = styled.div`
-  margin-top: 6px;
-  p {
-    margin: 0;
-    font-size: 13px;
-    display: block;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+const Divider = styled.div`
+  margin: 0 10px;
+  width: 1px; height: 13px;
+  background-color: rgb(200, 200, 200);
 `;
 
-const ContentFooter = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 6px 8px;
+const RateName = styled.div`
+  font-size: 13px;
+  color: rgb(158, 158, 158);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Label = styled.div`
   color: rgb(150, 150, 150);
-  font-size: 13px;
+  font-size: 14px;
+  height: ${({ lines }) => `${lines * 20}px`};
+  line-height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: ${({ lines }) => lines};
+  -webkit-box-orient: vertical;
 `;
 
 const Title = styled.h5`
   color: #000;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 600;
+  margin: 0;
 `;

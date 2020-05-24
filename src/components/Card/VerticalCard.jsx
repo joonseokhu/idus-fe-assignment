@@ -8,25 +8,28 @@ const Card = props => {
   const {
     label,
     title,
-    highlight,
-    crossOut,
+    current,
+    previous,
     img,
     rate,
     message,
     style,
     className,
-    width,
+    width = '200px',
     height,
   } = props;
 
   return (
-    <Root style={style} className={className} _width={width}>
-      {img && <Thumbnail url={img} ratio={1} meta={`이미지: ${title}`} />}
-      <ContentSection>
-        <Label>{label}</Label>
-        <Title>{title || 'Card Title'}</Title>
+    <Root style={style} className={className} _width={width} _height={height} hasRate={rate !== undefined}>
+      {img && <Thumbnail url={img} ratio={1} width={width} meta={`이미지: ${title}`} />}
+      <ContentSection _width={width} _height={height}>
+        <ContentInner>
+          <Label>{label}</Label>
+          <Title>{title || 'Card Title'}</Title>
+        </ContentInner>
         <ContentFooter>
-          ddd
+          <TextRed>{current}</TextRed>
+          <TextGray>{previous}</TextGray>
         </ContentFooter>
       </ContentSection>
       {(rate !== undefined) && (
@@ -47,28 +50,46 @@ export default Card;
 
 const Root = styled.section`
   border-radius: 6px;
+  position: relative;
   overflow: hidden;
   background-color: rgb(248, 249, 251);
   border: 1px solid rgb(217, 216, 216);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
   margin: 10px;
   width: ${({ _width }) => _width};
+  height: ${({ _height, hasRate }) => (hasRate ? _height : `calc(${_height} - 50px)`)};
 `;
 
 const ContentSection = styled.div`
   padding: 6px 8px;
-  position: relative;
-  /* min-height: ${({ _height }) => _height}; */
-  /* &:not(:first-child) {
-    border-top: 1px solid rgb(217, 216, 216);
-  } */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: ${({ _width, _height }) => `calc(${_height} - ${_width} - 50px)`};
   > *:not(:first-child) {
     margin-top: 6px;
   }
-  * {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+`;
+
+const ContentInner = styled.div`
+
+`;
+
+const ContentFooter = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const TextRed = styled.div`
+  color: rgb(200, 95, 89);
+  margin-right: 4px;
+  font-size: 15px;
+`;
+
+const TextGray = styled.div`
+  color: rgb(153, 153, 153);
+  text-decoration: line-through;
+  font-size: 13px;
 `;
 
 const RateSection = styled.div`
@@ -76,7 +97,9 @@ const RateSection = styled.div`
   padding: 6px 8px;
   display: flex;
   height: 50px;
+  width: 100%;
   flex-direction: column;
+  justify-content: space-between;
   justify-content: center;
 `;
 
@@ -92,14 +115,6 @@ const RateMessage = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-`;
-
-const ContentFooter = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 6px 8px;
 `;
 
 const Label = styled.div`

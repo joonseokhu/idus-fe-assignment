@@ -8,10 +8,11 @@ const Thumbnail = props => {
     url,
     meta,
     ratio = 1,
+    width = '100%',
   } = props;
 
   return (
-    <Root style={style} className={className} aria-label={meta}>
+    <Root style={style} className={className} aria-label={meta} _width={width}>
       <Outer ratio={ratio}>
         <Inner img={url} />
       </Outer>
@@ -22,11 +23,12 @@ const Thumbnail = props => {
 export default Thumbnail;
 
 const Root = styled.div`
-  
+  width: ${({ _width }) => _width};
 `;
 
 const Outer = styled.div`
   position: relative;
+  /* width: ${({ _width }) => _width}; */
   width: 100%;
   height: 0;
   padding-bottom: ${({ ratio }) => ratio * 100}%;
