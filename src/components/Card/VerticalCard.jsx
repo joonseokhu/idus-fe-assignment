@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Thumbnail from './Thumbnail';
@@ -25,7 +25,7 @@ const Card = props => {
       size={size}
       hasRate={rate !== undefined}
     >
-      {img && <Thumbnail url={img} ratio={1} width={size} meta={`이미지: ${title}`} />}
+      {img && <Thumbnail url={img} ratio={1} width={size} meta={`이미지 ${title}`} />}
       <ContentSection size={size}>
         <ContentInner>
           <Label>{label}</Label>

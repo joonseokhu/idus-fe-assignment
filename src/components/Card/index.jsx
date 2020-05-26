@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import VerticalCard from './VerticalCard';
 import HorizontalCard from './HorizontalCard';
-// import styled from 'styled-components';
 
-// import Thumbnail from './Thumbnail'
-// import Rate from './Rate'
-
-const Card = props => {
-  const { horizontal } = props;
-  return (
-    <>
-      {horizontal ? <HorizontalCard {...props} /> : <VerticalCard {...props} />}
-    </>
-  );
-};
-
-export default Card;
+export default props => (
+  <>{props.horizontal ? <HorizontalCard {...props} /> : <VerticalCard {...props} />}</>
+);

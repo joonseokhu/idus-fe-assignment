@@ -1,6 +1,4 @@
-import React, {
-  useState, useEffect, useReducer, useCallback,
-} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Rate = props => {
