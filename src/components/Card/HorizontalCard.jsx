@@ -8,15 +8,12 @@ const Card = props => {
   const {
     label,
     title,
-    highlight,
-    crossOut,
     img,
     rate,
     message,
     style,
     className,
-    width = '100%',
-    height = '160px',
+    size = '160px',
   } = props;
 
   const getLines = h => {
@@ -27,11 +24,11 @@ const Card = props => {
   };
 
   return (
-    <Root style={style} className={className} _width={width} _height={height}>
-      {img && <Thumbnail url={img} ratio={1} meta={`이미지: ${title}`} width={height} />}
-      <ContentSection _width={height}>
+    <Root style={style} className={className} _height={size}>
+      {img && <Thumbnail url={img} ratio={1} meta={`이미지: ${title}`} width={size} />}
+      <ContentSection size={size}>
         <Title>{title || 'Card Title'}</Title>
-        <Label _height={height} lines={getLines(height)}>{label}</Label>
+        <Label _height={size} lines={getLines(size)}>{label}</Label>
         {rate && (
           <RateSection>
             <Rate rate={rate} />
@@ -51,7 +48,6 @@ const Card = props => {
 export default Card;
 
 const Root = styled.section`
-  width: ${({ _width }) => _width};
   height: ${({ _height }) => _height};
   display: flex;
   position: relative;
@@ -72,7 +68,7 @@ const Root = styled.section`
 `;
 
 const ContentSection = styled.div`
-  width: ${({ _width }) => `calc(100% - ${_width})`};
+  width: ${({ size }) => `calc(100% - ${size})`};
   height: 100%;
   overflow: hidden;
   padding: 16px 16px;
@@ -122,4 +118,9 @@ const Title = styled.h5`
   font-size: 15px;
   font-weight: 600;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

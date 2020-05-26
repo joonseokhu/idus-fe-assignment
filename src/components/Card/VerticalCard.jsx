@@ -15,37 +15,21 @@ const Card = props => {
     message,
     style,
     className,
-    width = '200px',
-    height = '350px',
+    size = '200px',
   } = props;
-
-  const st = {
-    width,
-    height,
-    minHeight: '350px',
-    rateHeight: '50px',
-  };
-
-  const getLines = h => {
-    const min = 2;
-    const value = Number(h.replace('px', ''));
-    if (Number.isNaN(value)) return min;
-    const result = Math.floor((value - 100) / 20);
-    return result > min ? result : min;
-  };
 
   return (
     <Root
       style={style}
       className={className}
-      st={st}
+      size={size}
       hasRate={rate !== undefined}
     >
-      {img && <Thumbnail url={img} ratio={1} width={width} meta={`이미지: ${title}`} />}
-      <ContentSection st={st}>
+      {img && <Thumbnail url={img} ratio={1} width={size} meta={`이미지: ${title}`} />}
+      <ContentSection size={size}>
         <ContentInner>
           <Label>{label}</Label>
-          <Title lines={getLines(st.height)}>{title || 'Card Title'}</Title>
+          <Title>{title || 'Card Title'}</Title>
         </ContentInner>
         <ContentFooter>
           <TextRed>{highlight}</TextRed>
@@ -76,9 +60,8 @@ const Root = styled.section`
   border: 1px solid rgb(217, 216, 216);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
   margin: 10px;
-  width: ${({ st }) => st.width};
-  height: ${({ st, hasRate }) => (hasRate ? st.height : `calc(${st.height} - ${st.rateHeight})`)};
-  min-height: ${({ st, hasRate }) => (hasRate ? st.minHeight : `calc(${st.minHeight} - ${st.rateHeight})`)};
+  width: ${({ size }) => size};
+  height: ${({ hasRate }) => (hasRate ? '350px' : 'calc(350px - 50px)')};
 `;
 
 const ContentSection = styled.div`
@@ -86,8 +69,7 @@ const ContentSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${({ st }) => `calc(${st.height} - ${st.width} - ${st.rateHeight})`};
-  min-height: ${({ st }) => `calc(${st.minHeight} - ${st.width} - ${st.rateHeight})`};
+  height: ${({ size }) => `calc(350px - ${size} - 50px)`};
   > *:not(:first-child) {
     margin-top: 6px;
   }
@@ -153,8 +135,8 @@ const Title = styled.h5`
   margin-top: 10px;
   display: -webkit-box;
   line-height: 20px;
-  height: 
-  -webkit-line-clamp: 1;
+  height: 40px;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

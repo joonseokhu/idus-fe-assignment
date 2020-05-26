@@ -12,33 +12,28 @@ function App() {
         <Card
           title="This is the title message of card"
           label="This is label"
-          width="200px"
-          // height="400px"
-          img="https://picsum.photos/seed/2/300/300"
-          rate={2}
-          highlight="12345"
-          crossout="12345"
-        />
-        <Card
-          title="This is the title message of card"
-          label="This is label"
           img="https://picsum.photos/seed/3/300/300"
-          message="Lorem ipsum dolor sit amet, foo consectetur adipiscing elit."
-          width="200px"
-          height="400px"
+          message={lorem(10)}
+          size="200px"
           rate={4}
           highlight="12345"
           crossout="12345"
-          // horizontal
+        />
+        <Card
+          title={lorem(10)}
+          label="This is label"
+          size="200px"
+          img="https://picsum.photos/seed/2/300/300"
+          rate={2}
+          highlight="abcde"
+          crossout="abcde"
         />
         <Card
           title="This is the title message of card"
           label="This is label"
-          // width="300px"
           img="https://picsum.photos/seed/4/300/300"
-          highlight="12345"
-          crossout="12345"
-          // horizontal
+          highlight="highlight"
+          crossout="crossout"
         />
         <Card
           title="Title"
@@ -46,8 +41,7 @@ function App() {
           img="https://picsum.photos/seed/123/300/300"
           rate={2}
           message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          // style={{ display: 'inline-block' }}
-          width="500px"
+          style={{ width: '500px' }}
           horizontal
         />
       </CardSection>

@@ -14,7 +14,7 @@ const Rate = props => {
   } = props;
 
   return (
-    <Root style={style} className={className}>
+    <Root style={style} className={className} aria-label={`평점 ${rate}/5`}>
       {Array(5).fill().map((_, i) => (
         <Star
           key={i}
@@ -33,9 +33,9 @@ const Root = styled.div`
 `;
 
 const Star = styled.div`
-  background-color: ${({_color}) => _color};
-  width: ${({_size}) => `${_size}px`};
-  height: ${({_size}) => `${_size}px`};
+  background-color: ${({ _color }) => _color};
+  width: ${({ _size }) => `${_size}px`};
+  height: ${({ _size }) => `${_size}px`};
   border-radius: 50%;
   &:not(:last-child) {
     margin-right: 4px;
