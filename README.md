@@ -18,3 +18,45 @@ npm install
 ```bash
 npm start
 ```
+
+# 프로젝트 설명
+
+과제로 주어진 UI 는 리액트의 컴포넌트로 작성되었습니다. 각각 `Card` `TextArea` 라는 이름으로 export 되어있습니다.
+
+## Card
+
+|: name :|: type :|: 설명 :|: 기본값 :|
+|--------|--------|-------|--------|
+| style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
+| className | str | 최상위 태그에 넣을 클래스명 | '' |
+| label | str | 리뷰 근처의 텍스트 | null |
+| title | str | 제목 | null |
+| img | str (url) | 썸네일의 url | null |
+| rate | num (1 ~ 5) | 평점 값 | null |
+| message | str | 내용에 해당하는 텍스트 | null |
+| size | str (css) |썸네일의 한쪽 길이 | 200px(세로형)| 160px(가로형) |
+| highlight | str | 빨간색 텍스트 | '' |
+| crossout | str | 선으로 그어진 텍스트 | '' |
+
+| style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
+| className | str | 최상위 태그에 넣을 클래스명 | '' |
+| placeholder | str | placeholder 속성 값 | '내용을 입력하세요.' |
+| value | str |  | '' |
+| disabled | bool | disabled 속성 값 | false |
+| readonly | bool | readonly 속성 값 | false |
+| onSubmit | func | save 버튼 누를때 콜백 |  |
+| max | num | 최대 글자수 |  |
+
+
+## TextArea
+
+|: name :|: type :|: 설명 :|: 기본값 :|
+|--------|--------|-------|--------|
+| style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
+| className | str | 최상위 태그에 넣을 클래스명 | '' |
+| placeholder | str | placeholder 속성 값 | '내용을 입력하세요.' |
+| value | str |  | '' |
+| disabled | bool | disabled 속성 값 | false |
+| readonly | bool | readonly 속성 값 | false |
+| onSubmit | func | save 버튼 누를때 콜백 |  |
+| max | num | 최대 글자수 |  |

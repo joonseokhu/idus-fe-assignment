@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const TextArea = props => {
   const {
-    children,
     style,
     className,
     placeholder = '내용을 입력하세요.',
