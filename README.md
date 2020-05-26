@@ -25,7 +25,7 @@ npm start
 
 ## Card
 
-|: name :|: type :|: 설명 :|: 기본값 :|
+| name | type | 설명 | 기본값 |
 |--------|--------|-------|--------|
 | style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
 | className | str | 최상위 태그에 넣을 클래스명 | '' |
@@ -38,19 +38,10 @@ npm start
 | highlight | str | 빨간색 텍스트 | '' |
 | crossout | str | 선으로 그어진 텍스트 | '' |
 
-| style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
-| className | str | 최상위 태그에 넣을 클래스명 | '' |
-| placeholder | str | placeholder 속성 값 | '내용을 입력하세요.' |
-| value | str |  | '' |
-| disabled | bool | disabled 속성 값 | false |
-| readonly | bool | readonly 속성 값 | false |
-| onSubmit | func | save 버튼 누를때 콜백 |  |
-| max | num | 최대 글자수 |  |
-
 
 ## TextArea
 
-|: name :|: type :|: 설명 :|: 기본값 :|
+| name | type | 설명 | 기본값 |
 |--------|--------|-------|--------|
 | style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
 | className | str | 최상위 태그에 넣을 클래스명 | '' |
