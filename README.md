@@ -1,6 +1,7 @@
 # idus 프론트엔드 과제
 
-![결과물 스크린샷](https://user-images.githubusercontent.com/19492260/82863719-d86cb800-9f5d-11ea-80d1-38f3cf1888a7.png)
+![결과물 스크린샷](https://user-images.githubusercontent.com/19492260/82863894-3e593f80-9f5e-11ea-968e-cfa2c0cf732d.png)
+
 
 
 ## 실행방법
