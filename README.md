@@ -1,5 +1,9 @@
+# idus 프론트엔드 과제
 
-# 실행방법
+![결과물 스크린샷](https://user-images.githubusercontent.com/19492260/82863719-d86cb800-9f5d-11ea-80d1-38f3cf1888a7.png)
+
+
+## 실행방법
 
 1. 해당 레포지토리를 클론합니다.
 
@@ -19,11 +23,11 @@ npm install
 npm start
 ```
 
-# 프로젝트 설명
+## 프로젝트 설명
 
 과제로 주어진 UI 는 리액트의 컴포넌트로 작성되었습니다. 각각 `Card` `TextArea` 라는 이름으로 export 되어있습니다.
 
-## Card
+### Card
 
 | name | type | 설명 | 기본값 |
 |--------|--------|-------|--------|
@@ -40,7 +44,7 @@ npm start
 | crossout | str | 선으로 그어진 텍스트 | '' |
 
 
-## TextArea
+### TextArea
 
 | name | type | 설명 | 기본값 |
 |--------|--------|-------|--------|
