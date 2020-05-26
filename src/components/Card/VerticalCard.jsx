@@ -8,28 +8,48 @@ const Card = props => {
   const {
     label,
     title,
-    current,
-    previous,
+    highlight,
+    crossout,
     img,
     rate,
     message,
     style,
     className,
     width = '200px',
-    height,
+    height = '350px',
   } = props;
 
+  const st = {
+    width,
+    height,
+    minHeight: '350px',
+    rateHeight: '50px',
+  };
+
+  const getLines = h => {
+    const min = 2;
+    const value = Number(h.replace('px', ''));
+    if (Number.isNaN(value)) return min;
+    const result = Math.floor((value - 100) / 20);
+    return result > min ? result : min;
+  };
+
   return (
-    <Root style={style} className={className} _width={width} _height={height} hasRate={rate !== undefined}>
+    <Root
+      style={style}
+      className={className}
+      st={st}
+      hasRate={rate !== undefined}
+    >
       {img && <Thumbnail url={img} ratio={1} width={width} meta={`이미지: ${title}`} />}
-      <ContentSection _width={width} _height={height}>
+      <ContentSection st={st}>
         <ContentInner>
           <Label>{label}</Label>
-          <Title>{title || 'Card Title'}</Title>
+          <Title lines={getLines(st.height)}>{title || 'Card Title'}</Title>
         </ContentInner>
         <ContentFooter>
-          <TextRed>{current}</TextRed>
-          <TextGray>{previous}</TextGray>
+          <TextRed>{highlight}</TextRed>
+          <TextGray>{crossout}</TextGray>
         </ContentFooter>
       </ContentSection>
       {(rate !== undefined) && (
@@ -56,8 +76,9 @@ const Root = styled.section`
   border: 1px solid rgb(217, 216, 216);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
   margin: 10px;
-  width: ${({ _width }) => _width};
-  height: ${({ _height, hasRate }) => (hasRate ? _height : `calc(${_height} - 50px)`)};
+  width: ${({ st }) => st.width};
+  height: ${({ st, hasRate }) => (hasRate ? st.height : `calc(${st.height} - ${st.rateHeight})`)};
+  min-height: ${({ st, hasRate }) => (hasRate ? st.minHeight : `calc(${st.minHeight} - ${st.rateHeight})`)};
 `;
 
 const ContentSection = styled.div`
@@ -65,14 +86,17 @@ const ContentSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${({ _width, _height }) => `calc(${_height} - ${_width} - 50px)`};
+  height: ${({ st }) => `calc(${st.height} - ${st.width} - ${st.rateHeight})`};
+  min-height: ${({ st }) => `calc(${st.minHeight} - ${st.width} - ${st.rateHeight})`};
   > *:not(:first-child) {
     margin-top: 6px;
   }
 `;
 
 const ContentInner = styled.div`
-
+  > * {
+    margin: 0;
+  }
 `;
 
 const ContentFooter = styled.div`
@@ -126,4 +150,12 @@ const Title = styled.h5`
   color: #000;
   font-size: 15px;
   font-weight: 400;
+  margin-top: 10px;
+  display: -webkit-box;
+  line-height: 20px;
+  height: 
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

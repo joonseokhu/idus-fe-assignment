@@ -6,7 +6,6 @@
       "  useState, useEffect, useReducer, useCallback,",
       "} from 'react';",
       "import styled from 'styled-components';",
-      "import { reducer } from 'src/utils';",
       "",
       "const ${MyComp} = props => {",
       "  const {",
