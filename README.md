@@ -29,7 +29,7 @@ npm start
 |--------|--------|-------|--------|
 | style | obj | 최상위 태그에 넣을 인라인 스타일 | {} |
 | className | str | 최상위 태그에 넣을 클래스명 | '' |
-| horizontal | boolean | 가로형인지 아닌지 | false |
+| horizontal | boolean | 가로형인지 여부 | false |
 | label | str | 리뷰 근처의 텍스트 | null |
 | title | str | 제목 | null |
 | img | str (url) | 썸네일의 url | null |
